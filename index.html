@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment DANA QRIS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff4b4b 0%, #ff4b4b 50%, #ffffff 50%, #ffffff 100%);
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 30px 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-text {
+            color: #ff4b4b;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-top: 20px;
+            font-size: 32px;
+        }
+        
+        .payment-box {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            margin-top: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .payment-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .payment-info h2 {
+            color: #ff4b4b;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .payment-details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .amount {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ff4b4b;
+            margin: 10px 0;
+        }
+        
+        .dana-number {
+            font-size: 18px;
+            background-color: #ffebee;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .qris-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .qris-image {
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-dana {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(to right, #ff4b4b, #ff2b2b);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 75, 75, 0.4);
+            margin: 30px 0;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+        
+        .btn-dana:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 75, 75, 0.6);
+        }
+        
+        .btn-dana:active {
+            transform: translateY(1px);
+        }
+        
+        .instruction {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #ffebee;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        
+        .instruction ol {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+        
+        .instruction li {
+            margin-bottom: 8px;
+        }
+        
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff4b4b;
+            font-size: 16px;
+            padding: 10px;
+            background-color: #ffebee;
+            border-radius: 10px;
+        }
+        
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-image: url('https://files.catbox.moe/lfzwas.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.2;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            font-size: 14px;
+            position: relative;
+            z-index: 2;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .payment-box {
+                padding: 20px;
+            }
+            
+            .qris-image {
+                max-width: 250px;
+            }
+            
+            .amount {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax-bg"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-text">DANA</div>
+            </div>
+            <h1>PAYMENT QRIS</h1>
+        </header>
+        
+        <div class="payment-box">
+            <div class="payment-info">
+                <h2>PEMBAYARAN MELALUI DANA</h2>
+                <p>Silakan lakukan pembayaran melalui QRIS DANA berikut</p>
+            </div>
+            
+            <div class="payment-details">
+                <p>Jumlah Pembayaran:</p>
+                <div class="amount">Rp 100.000</div>
+                <p>Ke Rekening DANA:</p>
+                <div class="dana-number">083192806229</div>
+            </div>
+            
+            <div class="qris-container">
+                <img src="https://files.catbox.moe/m5lmxv.jpeg" alt="QRIS DANA" class="qris-image">
+            </div>
+            
+            <a href="#" class="btn-dana">BAYAR DENGAN DANA</a>
+            
+            <div class="instruction">
+                <h3>Cara Pembayaran:</h3>
+                <ol>
+                    <li>Buka aplikasi DANA di ponsel Anda</li>
+                    <li>Ketuk tombol Bayar dan pilih Scan</li>
+                    <li>Arahkan kamera ke kode QR di atas</li>
+                    <li>Masukkan jumlah pembayaran yang sesuai</li>
+                    <li>Konfirmasi pembayaran Anda</li>
+                </ol>
+            </div>
+            
+            <div class="message">
+                TOLONG KASIH BUKTI TF KE BANG DANZZ YAH BEGO
+            </div>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 Payment DANA QRIS. Semua hak dilindungi.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Efek parallax sederhana
+        document.addEventListener('scroll', function() {
+            const parallaxBg = document.querySelector('.parallax-bg');
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.5;
+            parallaxBg.style.transform = `translateY(${rate}px)`;
+        });
+    </script>
+</body>
+</html>
